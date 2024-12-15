@@ -12,7 +12,12 @@ public class DoctorRepositoryImpl implements DoctorRepository {
     private final JdbcTemplate jdbcTamplaeBuild = JDBCTamplaeBuild.jdbcTamplate();
 
     private static final String GET_ALL =  "SELECT * FROM doctor";
-    private static final String GET_POSITION_DOCTOR =  "SELECT * FROM doctor WHERE position=";
+
+    private static final String UPDATE_POSITION_DOCTOR =  "UPDATE doctor SET position = ? , tel_doctor = ? WHERE fio_doctor = ?";
+
+    private static final String INSERT_DOCTOR ="INSERT INTO doctor (id, fio_doctor, position, tel_doctor) VALUES (?, ?, ?, ?)";
+
+    private static final String DELETE_DOCTOR ="DELETE FROM doctor WHERE fio_doctor = ?";
 
     @Override
     public List<Doctor> getAll() {
@@ -20,10 +25,24 @@ public class DoctorRepositoryImpl implements DoctorRepository {
     }
 
     @Override
-    public List<Doctor> getPositionDoctor(String s){
-        var str = GET_POSITION_DOCTOR + "\'" + s + "\'";
-        return jdbcTamplaeBuild.query(str, doctorRowMapper);
+    public void updateDoctor(String position, String tel_doctor, String fio_doctor) {
+
+        jdbcTamplaeBuild.update(UPDATE_POSITION_DOCTOR, position, tel_doctor, fio_doctor);
+
     }
+
+    @Override
+    public void deleteDoctor(String fio) {
+
+        jdbcTamplaeBuild.update(DELETE_DOCTOR, fio);
+
+    }
+
+    @Override
+    public void addDoctor(Long id, String fio_doctor, String position, String tel_doctor) {
+        jdbcTamplaeBuild.update(INSERT_DOCTOR, id, fio_doctor, position, tel_doctor);
+    }
+
 
     private static final RowMapper<Doctor> doctorRowMapper = (row, rowNumber) -> {
 

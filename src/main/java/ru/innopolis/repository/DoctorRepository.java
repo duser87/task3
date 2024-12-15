@@ -8,6 +8,10 @@ public interface DoctorRepository {
 
     public List<Doctor> getAll();
 
-    public List<Doctor> getPositionDoctor(String s);
+    public void addDoctor(Long id, String position, String tel_doctor, String fio_doctor);
+
+    void updateDoctor(String position, String tel_doctor, String fio_doctor);
+
+    public void deleteDoctor(String fio);
 
 }

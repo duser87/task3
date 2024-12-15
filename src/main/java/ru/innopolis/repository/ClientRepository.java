@@ -10,4 +10,8 @@ public interface ClientRepository {
 
     public void updateClient(String tel, String address, String fio);
 
+    public void addClient(Long id, String fio, String tel, String address);
+
+    public void deleteCLient(String fio);
+
 }

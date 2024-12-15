@@ -13,7 +13,12 @@ public class ClientRepositoryImpl implements ClientRepository {
     private final JdbcTemplate jdbcTamplaeBuild = JDBCTamplaeBuild.jdbcTamplate();
 
     private static final String GET_ALL =  "SELECT * FROM client";
+
     private static final String UPDATE_TEL_CLIENT =  "UPDATE client SET tel = ?, address = ? WHERE fio = ?";
+
+    private static final String INSERT_CLIENT ="INSERT INTO client (id, fio, tel, address) VALUES (?, ?, ?, ?)";
+
+    private static final String DELETE_CLIENT ="DELETE FROM client WHERE fio = ?";
 
     @Override
     public List<Client> getAll() {
@@ -23,9 +28,22 @@ public class ClientRepositoryImpl implements ClientRepository {
     @Override
     public void updateClient(String tel, String address, String fio) {
 
-        var result = UPDATE_TEL_CLIENT;
+        jdbcTamplaeBuild.update(UPDATE_TEL_CLIENT, tel, address, fio);
 
-        jdbcTamplaeBuild.update(result, tel, address, fio);
+    }
+
+    @Override
+    public void addClient(Long id, String fio, String tel, String address) {
+
+        jdbcTamplaeBuild.update(INSERT_CLIENT, id, fio, tel, address);
+
+    }
+
+    @Override
+    public void deleteCLient(String fio) {
+
+        jdbcTamplaeBuild.update(DELETE_CLIENT, fio);
+
     }
 
 
