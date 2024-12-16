@@ -1,5 +1,4 @@
 
--- Создаю таблицы в БД
 
 CREATE TABLE IF NOT EXISTS client
 (

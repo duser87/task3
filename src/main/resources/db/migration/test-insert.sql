@@ -1,5 +1,4 @@
 
--- Добавляю информацию в таблицы
 
 INSERT INTO client(id, fio, tel, address) VALUES (1, 'Иванов Иван Иванович', '+79876543210', 'ул.Мира, д.1');
 INSERT INTO client(id, fio, tel, address) VALUES (2, 'Иванов Сергей Сергеевич', '+79876543211', 'ул.Дружбы, д.2');

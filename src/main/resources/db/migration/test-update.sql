@@ -1,5 +1,4 @@
 
--- Обновляю данные
 
 UPDATE client SET tel = '+79997775544', address = 'ул. Южная, д.12' WHERE id = 1;
 UPDATE client SET tel = '+79995553311', address = 'ул. Жизни, д.17' WHERE id = 2;
